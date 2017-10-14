@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewsTagChange</string>
+    <string name="toutiao">头条</string>
+    <string name="wangyihao">网易</string>
+    <string name="caijin">财经</string>
+    <string name="keji">科技</string>
+    <string name="shishang">时尚</string>
+    <string name="zhibo">直播</string>
+    <string name="tupian">图片</string>
+    <string name="yingshi">影视</string>
+    <string name="彩票">彩票</string>
+</resources>
