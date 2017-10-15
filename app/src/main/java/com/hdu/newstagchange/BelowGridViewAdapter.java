@@ -1,8 +1,6 @@
 package com.hdu.newstagchange;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +9,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 /**
- * Created by 612 on 2017/10/14.
+ * 下方
+ * Created by 612 on 2017/10/15.
  */
 
-public class GridviewAdapter extends BaseAdapter {
+public class BelowGridViewAdapter extends BaseAdapter {
+
     private Context context;
     private List<String> data;
     private LayoutInflater inflater;
 
     private String TAG="lxz612 gridview";
 
-    GridviewAdapter(Context context,List<String> data){
+    BelowGridViewAdapter(Context context, List<String> data){
         this.context=context;
         this.data=data;
         inflater=LayoutInflater.from(context);
@@ -47,10 +45,20 @@ public class GridviewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v=inflater.inflate(R.layout.item,null);
-        v.setTag(position);
-        TextView tv= (TextView) v.findViewById(R.id.tv);
-        tv.setText(data.get(position));
-        return v;
+        ViewHolder viewHolder=null;
+        if(convertView==null){
+            viewHolder=new ViewHolder();
+            convertView=inflater.inflate(R.layout.item_normal,null);
+            viewHolder.tv = (TextView) convertView.findViewById(R.id.tv);
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder= (ViewHolder) convertView.getTag();
+        }
+        viewHolder.tv.setText(data.get(position));
+        return convertView;
+    }
+
+    class ViewHolder{
+        private TextView tv;
     }
 }

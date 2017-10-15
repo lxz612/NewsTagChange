@@ -19,16 +19,15 @@
         android:layout_marginLeft="5dp"
         android:text="切换栏目"/>
 
-    <GridView
+    <com.hdu.newstagchange.DragGridView
         android:id="@+id/gv_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="4"
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"
-        android:background="#f0f0f0"
         android:layout_below="@id/tv_top">
-    </GridView>
+    </com.hdu.newstagchange.DragGridView>
 
     <TextView
         android:id="@+id/tv_below"
