@@ -2,6 +2,7 @@ package com.hdu.newstagchange;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity{
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 String s=ls_top_str.get(position);
                 ls_top_str.remove(position);
                 ls_below_str.add(s);
@@ -58,6 +58,26 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+
+//        gv_top.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()){
+//                    case MotionEvent.ACTION_DOWN:
+//                        //按下的位置
+//                        int mDownX = (int) event.getX();
+//                        int mDownY = (int) event.getY();
+//                        int position=gv_top.pointToPosition(mDownX,mDownY);
+//                        gv_top.addImageItem(position,ls_top_str.get(position));
+//                        break;
+//                    case MotionEvent.ACTION_MOVE:
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
         gv_below.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,6 +109,18 @@ public class MainActivity extends AppCompatActivity{
         ls_top_str.add("科技");
         ls_top_str.add("时尚");
         ls_top_str.add("直播");
+        ls_top_str.add("热点");
+        ls_top_str.add("股票");
+        ls_top_str.add("十九大");
+        ls_top_str.add("问吧");
+        ls_top_str.add("NBA");
+        ls_top_str.add("历史");
+        ls_top_str.add("家居");
+        ls_top_str.add("游戏");
+        ls_top_str.add("航空");
+        ls_top_str.add("社会");
+
+
 
         ls_below_str.add("图片");
         ls_below_str.add("影视");

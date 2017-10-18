@@ -62,10 +62,12 @@ public class DragGridViewAdapter extends BaseAdapter {
         if (position==hidePos){
             //设置为拖动背景
             convertView.findViewById(R.id.tv).setBackground(context.getResources().getDrawable(R.drawable.tv_shape_drag));
+            ((TextView)convertView.findViewById(R.id.tv)).setText("");
             Log.i(TAG, "colorAccent***"+position);
         }else{
             //设置为正常背景
             convertView.findViewById(R.id.tv).setBackground(context.getResources().getDrawable(R.drawable.tv_shape_normal));
+            ((TextView)convertView.findViewById(R.id.tv)).setText(data.get(position));
         }
         return convertView;
     }
@@ -88,6 +90,10 @@ public class DragGridViewAdapter extends BaseAdapter {
         hideItem(toPos);
         //通知gridview更新
         this.notifyDataSetChanged();
+    }
+
+    public List<String> getData(){
+        return data;
     }
 
     //隐藏某个位置的item
