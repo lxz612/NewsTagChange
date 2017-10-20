@@ -2,18 +2,12 @@ package com.hdu.newstagchange;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.hdu.newstagchange.R.id.gv_below;
-import static com.hdu.newstagchange.R.id.gv_top;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -27,18 +21,12 @@ public class MainActivity extends AppCompatActivity{
     private DragGridViewAdapter top_adapter;
     private BelowGridViewAdapter below_adapter;
 
-    private RelativeLayout activity_main;
-
-    private TextView tv_top;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gv_top= (DragGridView) findViewById(R.id.gv_top);
         gv_below= (GridView) findViewById(R.id.gv_below);
-        activity_main= (RelativeLayout) findViewById(R.id.activity_main);
-        tv_top= (TextView) findViewById(R.id.tv_top);
         initData();
         top_adapter=new DragGridViewAdapter(this,ls_top_str);
         gv_top.setAdapter(top_adapter);
@@ -46,7 +34,6 @@ public class MainActivity extends AppCompatActivity{
         gv_below.setAdapter(below_adapter);
 
         gv_top.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String s=ls_top_str.get(position);
@@ -59,6 +46,15 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        gv_top.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                gv_top.setDragImageItem(position,ls_top_str.get(position));
+                return true;
+            }
+        });
+
 //        gv_top.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -68,7 +64,7 @@ public class MainActivity extends AppCompatActivity{
 //                        int mDownX = (int) event.getX();
 //                        int mDownY = (int) event.getY();
 //                        int position=gv_top.pointToPosition(mDownX,mDownY);
-//                        gv_top.addImageItem(position,ls_top_str.get(position));
+//                        gv_top.setDragImageItem(position,ls_top_str.get(position));
 //                        break;
 //                    case MotionEvent.ACTION_MOVE:
 //                        break;
@@ -91,14 +87,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        gv_top.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                gv_top.addImageItem(position,ls_top_str.get(position));
-                return false;
-            }
-        });
     }
 
     //初始化数据，Modle数据就是一个String

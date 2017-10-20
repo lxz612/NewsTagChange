@@ -11,8 +11,6 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-import static android.R.attr.id;
-
 /**
  * 可拖动重排GridView的Adapter
  * Created by 612 on 2017/10/14.
@@ -48,7 +46,7 @@ public class DragGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder=null;
         if(convertView==null){
             viewHolder=new ViewHolder();
@@ -63,7 +61,6 @@ public class DragGridViewAdapter extends BaseAdapter {
             //设置为拖动背景
             convertView.findViewById(R.id.tv).setBackground(context.getResources().getDrawable(R.drawable.tv_shape_drag));
             ((TextView)convertView.findViewById(R.id.tv)).setText("");
-            Log.i(TAG, "colorAccent***"+position);
         }else{
             //设置为正常背景
             convertView.findViewById(R.id.tv).setBackground(context.getResources().getDrawable(R.drawable.tv_shape_normal));
@@ -88,7 +85,7 @@ public class DragGridViewAdapter extends BaseAdapter {
         data.set(toPos,tempStr);
         //设置隐藏位置
         hideItem(toPos);
-        //通知gridview更新
+        //更新
         this.notifyDataSetChanged();
     }
 
