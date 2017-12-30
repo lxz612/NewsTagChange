@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -46,12 +49,13 @@ public class DragGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         ViewHolder viewHolder=null;
         if(convertView==null){
             viewHolder=new ViewHolder();
             convertView=inflater.inflate(R.layout.item_del,null);
             viewHolder.tv = (TextView) convertView.findViewById(R.id.tv);
+            viewHolder.iv = (ImageView) convertView.findViewById(R.id.iv);
             convertView.setTag(viewHolder);
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
@@ -66,6 +70,14 @@ public class DragGridViewAdapter extends BaseAdapter {
             convertView.findViewById(R.id.tv).setBackground(context.getResources().getDrawable(R.drawable.tv_shape_normal));
             ((TextView)convertView.findViewById(R.id.tv)).setText(data.get(position));
         }
+        //TODO 删除item
+        viewHolder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,position+"",Toast.LENGTH_SHORT).show();
+                ((GridView)parent).performItemClick(v,position,v.getId());
+            }
+        });
         return convertView;
     }
 
@@ -100,6 +112,7 @@ public class DragGridViewAdapter extends BaseAdapter {
 
     class ViewHolder{
         private TextView tv;
+        private ImageView iv;
     }
 
 }
