@@ -66,11 +66,6 @@ public class DragGridView extends GridView {
         init(context);
     }
 
-    public DragGridView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
-    }
-
     private void init(Context context) {
         inflater = LayoutInflater.from(context);
         manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
